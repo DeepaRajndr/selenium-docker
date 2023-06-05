@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //bat - for windows
-                sh "docker build -t='DeepaRajndr/selenium-docker' ."
+                sh "docker build -t='deeparajndr/selenium-docker' ."
             }
         }
         stage('Push Image') {
@@ -19,7 +19,7 @@ pipeline {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //bat - for windows
 			        sh "docker login --username=${user} --password=${pass}"
-			        sh "docker push DeepaRajndr/selenium-docker:latest"
+			        sh "docker push deeparajndr/selenium-docker:latest"
 			    }
             }
         }
