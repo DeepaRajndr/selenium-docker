@@ -4,22 +4,22 @@ pipeline {
     stages {
         stage('Build Jar') {
             steps {
-                //sh
-                bat "mvn clean package -DskipTests"
+                //bat - for windows
+                sh "mvn clean package -DskipTests"
             }
         }
         stage('Build Image') {
             steps {
-                //sh
-                bat "docker build -t='DeepaRajndr/selenium-docker' ."
+                //bat - for windows
+                sh "docker build -t='DeepaRajndr/selenium-docker' ."
             }
         }
         stage('Push Image') {
             steps {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    //sh
-			        bat "docker login --username=${user} --password=${pass}"
-			        bat "docker push DeepaRajndr/selenium-docker:latest"
+                    //bat - for windows
+			        sh "docker login --username=${user} --password=${pass}"
+			        sh "docker push DeepaRajndr/selenium-docker:latest"
 			    }
             }
         }
