@@ -18,8 +18,8 @@ pipeline {
             steps {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //bat - for windows
-			        sh "sudo docker login --username=${user} --password=${pass}"
-			        sh "sudo docker push deeparajndr/selenium-docker:latest"
+			        sh "docker login --username=${user} --password=${pass}"
+			        sh "docker push deeparajndr/selenium-docker:latest"
 			    }
             }
         }
